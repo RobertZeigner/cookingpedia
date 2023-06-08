@@ -2,16 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-.main {
-  width: 100vw;
-  min-height: 100vh;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  padding: 120px 24px 160px 24px;
-  pointer-events: none;
+.app {
+  @apply relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-center px-6 sm:px-16;
 }
 
-.app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] sm:text-6xl;
+}
+
+.orange_gradient {
+  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+
+.logo_text {
+  @apply text-lg font-semibold tracking-wide text-black max-sm:hidden;
+}
+
+.recipe_feed {
+  @apply mx-auto mt-16 flex w-full max-w-xl flex-col items-center justify-center gap-2;
+}
+
+.orange_btn {
+  @apply flex items-center justify-center rounded-full bg-orange-600 px-5 py-1.5 text-center text-sm text-white  transition-all hover:bg-amber-400 hover:text-black;
+}
+
+.dropdown {
+  @apply absolute right-0 top-full mt-3 flex w-full min-w-[150px] flex-col items-end justify-end gap-2 rounded-lg bg-white p-5;
+}
+
+.dropdown_link {
+  @apply text-sm font-medium text-gray-700 hover:text-gray-500;
 }
