@@ -4,24 +4,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 import ThemeSwitcher from '@components/ThemeSwitcher';
 
 const Nav = () => {
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const router = useRouter();
 
-  const {data: session} = useSession()
+  const { data: session } = useSession();
 
   useEffect(() => {
     const setUpProviders = async () => {
-      const res = await getProviders()
-      setProviders(res)
-    }
-    setUpProviders()
+      const res = await getProviders();
+      setProviders(res);
+    };
+    setUpProviders();
   }, []);
 
-  
   return (
     <nav className='mb-16 flex w-full items-center justify-between pt-3'>
       <Link href='/' className='flex-center flex items-center gap-2'>
@@ -37,7 +38,7 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className='hidden sm:flex'>
-        {/* <ThemeSwitcher /> */}
+        <ThemeSwitcher />
         {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
             <Link href='/create-recipe' className='orange_btn'>
@@ -45,19 +46,19 @@ const Nav = () => {
             </Link>
 
             {/* SignOut/LogOut Button */}
-            <button type='button' onClick={signOut} className='orange_btn'>
+            <button
+              type='button'
+              onClick={() => {
+                signOut, router.push('/');
+              }}
+              className='orange_btn'
+            >
               Ausloggen
             </button>
 
             {/* Profile Picture as a Link */}
             <Link href={'/profil'}>
-              <Image
-                src={session?.user.image}
-                height={35}
-                width={35}
-                alt='profil'
-                className='rounded-full'
-              />
+              <Image src={session?.user.image} height={35} width={35} alt='profil' className='rounded-full' />
             </Link>
           </div>
         ) : (
@@ -75,6 +76,7 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       <div className='sm:hidden flex relative'>
+        <ThemeSwitcher />
         {session?.user ? (
           <div className='flex'>
             <Image
@@ -101,11 +103,11 @@ const Nav = () => {
                     setToggleDropdown(false);
                     signOut();
                   }}
-                >Ausloggen
+                >
+                  Ausloggen
                 </button>
               </div>
             )}
-
           </div>
         ) : (
           <>
@@ -117,7 +119,7 @@ const Nav = () => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
-                  className='black_btn'
+                  className='orange_btn'
                 >
                   Einloggen
                 </button>

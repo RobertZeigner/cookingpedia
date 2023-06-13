@@ -3,6 +3,7 @@ import Nav from '@components/Nav';
 
 import ThemeProviders from '@components/ThemeProvider';
 import Providers from '@components/Providers';
+import Image from 'next/image';
 
 export const MetaData = {
   title: 'Cookingpedia',
@@ -12,8 +13,15 @@ export const MetaData = {
 const RootLayout = ({ children }) => {
   return (
     <html lang='de'>
-      <body className='dark:bg-slate-800'>
+      <body>
         <Providers>
+          {/* <div className='main' /> */}
+          {/* <Image
+            src={'/assets/images/layered-waves.svg'}
+            alt='waves'
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'bottom' }}
+          /> */}
           <main className='app'>
             <ThemeProviders>
               <Nav />

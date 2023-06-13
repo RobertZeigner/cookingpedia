@@ -2,16 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  background: url('/assets/images/layered-waves.svg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@media screen and (max-width: 640px) {
+  .main {
+    padding: 0;
+  }
+}
+
 .app {
   @apply relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-center px-6 sm:px-16;
 }
 
 .head_text {
   @apply mt-5 text-5xl font-extrabold leading-[1.15] sm:text-6xl;
-}
-
-.orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
 }
 
 .logo_text {
@@ -32,4 +42,8 @@
 
 .dropdown_link {
   @apply text-sm font-medium text-gray-700 hover:text-gray-500;
+}
+
+.switch_btn {
+  @apply flex items-center justify-center rounded-full bg-orange-600 px-5 py-1.5 text-center text-sm text-white transition-all hover:bg-amber-400;
 }
